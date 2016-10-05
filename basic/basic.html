@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body ng-controller="StoreController as store">
+
+    <!--This is for one product
+    <div ng-hide="store.product.soldOut">
+        <h1> {{ store.product.name }} </h1>
+        <h2> ${{ store.product.price }} </h2>
+        <p> {{store.product.description}} </p>
+        <button type="button" ng-show="store.product.canPurchase" > Add to Cart</button>
+    </div>
+    -->
+
+    <!--
+    <div ng-repeat="product in store.products">
+        <h1> {{product.name}}</h1>
+        <h2>${{product.price}}</h2>
+        <p> {{ product.description }} </p>
+        <button ng-show="product.canPurchase">Add to Cart</button>
+        <h1>--------------------------------------</h1>
+    </div>
+    -->
+
+
+    <!-- with multiple_products.js IMG
+    -->
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in store.products | limitTo:8">
+            <h3>
+                {{product.name}}
+                <em class="pull-middle">{{product.price | currency }}</em>
+                {{'1388123412323' | date:'MM/dd/yyyy @ h:mma'}}
+                <img ng-src="{{ product.images[0].thumb }}"/>
+            </h3>
+            <section ng-init="tab = 1">
+                <ul class="nav nav-pills">
+                    <li ng-class="{ active:tab === 1 }">
+                        <a href ng-click="tab = 1">Description</a> </li>
+                    <li ng-class="{ active:tab === 2 }">
+                        <a href ng-click="tab = 2">Specifications</a> </li>
+                    <li ng-class="{ active:tab === 3 }">
+                        <a href ng-click="tab = 3">Reviews</a> </li>
+                </ul>
+                <div class="panel" ng-show="tab === 1">
+                    <h4>Description</h4>
+                    <p>{{ product.description }}</p>
+                </div>
+                <div class="panel" ng-show="tab === 2">
+                    <h4>Specification</h4>
+                    <blockquote>{{ product.speci }}</blockquote>
+                </div>
+                <div class="panel" ng-show="tab === 3">
+                    <h4>Review</h4>
+                    <blockquote>None yet</blockquote>
+                </div>
+            </section>
+
+
+
+        </li>
+    </ul>
+
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="multiple_products.js"></script>
+
+</body>
+</html>
